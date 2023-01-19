@@ -1,7 +1,8 @@
 
 <?php
 
-include_once ('../scripts.php/signup.script.php');
+include_once ('../scripts.php/admin.script.php');
+// include_once ('../classes/admin.class.php');
 $adminn = new Getadmin();
 $adminn->loginUser();
 
@@ -21,6 +22,12 @@ $adminn->loginUser();
 </head>
 <body> 
 
+<?php    if (isset($_SESSION['error'])) {
+         echo '<div class="alert alert-danger mt-5  mx-auto w-50 ">' . $_SESSION['error'] . ' </div>';
+         unset($_SESSION['error']);
+    }
+    ?>
+
 <div class=" d-flex justify-content-end ">
         <div class=" form-box row mx-4  p- " id="form-bx">
             <div class=" col-md-5 col">
@@ -28,7 +35,7 @@ $adminn->loginUser();
                     <h2 class="  fw-bold text-light mb-3">Login</h2>
                     <div class=" mb-3">
                         <input type="email" class="form-control" id="flo" aria-describedby="emailHelp" name="email"
-                            placeholder="Email address" required />
+                           value="<?php if(isset($_SESSION["email"])) echo $_SESSION["email"];?>" placeholder="Email address" required />
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" id="exampleInputPassword1" name="password"

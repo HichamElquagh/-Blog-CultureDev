@@ -1,22 +1,28 @@
 <?php
 include '../include/head.php';
- $title = 'dashboard';
+include '../classes/admin.class.php';
+include '../scripts.php/crud.scripts.php';
+//  $title = 'dashboard';
+
+
 ?>
 
 
 
 <nav class=" d-flex justify-content-between nav-bar">  
   <div class=" d-flex align-items-center h-100 brand">CultureDev</div>
-  <div class="d-flex align-items-center fs-3 me-5">
-    <i class="fa-solid fa-user text-light"></i>
+  <div class="d-flex align-items-center justify-content-between fs-3 me-5">
+    <i class="fa-solid fa-user mx-3 text-light"></i>
+    <?php echo '<div class="  text-light" >' . $_SESSION["name"] . ' </div>';?>
+
   </div>
 
 </nav>
     
 <div class="cont"> 
   <div class="sidebar">
-    <a class="active" href="#home">Home</a>
-    <a href="#news">News</a>
+    <a  onclick="showarticle();" class="active" href="#home">Home</a>
+    <a onclick="showcategory();" href="#news">category</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
   </div>
@@ -37,30 +43,131 @@ include '../include/head.php';
 
 
        <div class="tab">
-              <table class="table">
+       <div class="  mt-4">
+                <button class="btn mb-3 float-end btn-dark px-4 rounded-pill btn-cart" id="btntask" data-bs-toggle="modal"
+                data-bs-target="#modal"><i class="fa fa-plus"></i> Add Product </a>
+            </div>
+              <table class="table dd">
           <thead>
+          
+                                       
+                                   
             <tr class="table-dark">
               <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Category</th>
+              <th scope="col">Image</th>
+              <th scope="col"> Title</th>
+              <th scope="col">Desciption</th>
+              <th scope="col">Date</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
             </tr>
+           
           </thead>
           <tbody>
             <tr>
+            <?php foreach($displayarticl as $display):?>
               <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <input class="text-danger" type="text" value="<?php $display['id_article']?>">
+              <td><?php echo  $display['Carticle']?></td>
+              <td><?php echo  $display['image']?></td>
+              <td><?php echo $display['title']?></td>
+              <td> <?php echo $display['description']?></td>
+              <td> <?php echo  $display['datetime']?></td>
+              <td><a href="update.article.php?id=<?php echo  $display['id_article']  ?>"><i class=" text-success  fa fa-edit"></i></a> </td>
+              <td><i class=" text-danger fa fa-trash"></i></td>
             </tr>
+            <?php endforeach;?>
+          </tbody>
+        </table>
+
+        <table class="table ss ">
+          <thead>
+          
+                                       
+                                   
+            <tr class="table-dark">
+              <th scope="col">#</th>
+              <th scope="col">Category</th>
+
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+           
+          </thead>
+          <tbody>
+            <tr>
+            <?php foreach($displayarticl as $display):?>
+              <th scope="row">1</th>
+              <input class="text-danger" type="text" value="<?php $display['id_article']?>">
+              <td><?php echo  $display['Carticle']?></td>
+              <td><a href="update.article.php?id=<?php echo  $display['id_article']  ?>"><i class=" text-success  fa fa-edit"></i></a> </td>
+              <td><i class=" text-danger fa fa-trash"></i></td>
+            </tr>
+            <?php endforeach;?>
           </tbody>
         </table>
       </div>
     </div>
 </div>
+ 
+ <!-- TASK MODAL -->
+ <div class="modal fade" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal"
+                        id="modalboton">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
+                <form action="../scripts.php/crud.scripts.php" method="POST" id="form" ">
+                    <div class="modal-body">
+                        <h6 class="modal-title my-2" id="exampleModalLabel">Category</h6>
+                        <select class="form-select" id="selectstatus" name="category"
+                            aria-label="Default select example">
+                            <option selected>Category </option>
+                                    <?php foreach($dbcategory as $categotymodal):?>
+                                        <option value="<?php echo $categotymodal["id"] ?>"><?php echo $categotymodal["category_article"] ?> </option>
+                                    <?php endforeach;?>
+                        </select>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="recipient-name" value="<?php echo $_SESSION["id"] ?>" name="id_user">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label" id="article">Title</label>
+                            <input type="text" class="form-control" id="recipient-name" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="image" class="col-form-label" id="image">image</label>
+                            <input type="file" class="form-control" id="images" name="image">
+                        </div>
+                         
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label" id="Title">Description</label>
+                            <input type="text" class="form-control" id="recipient-name" step="any" name="description">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label" id="Title">Datetime</label>
+                            <input type="date" class="form-control" id="recipient-name" step="any" name="datetime">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" name="save" class="btn btn-primary" data-bs-dismiss="modal"
+                            id="saveBtn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="../assets/js/scripts.js"></script>
 </html>
 
 

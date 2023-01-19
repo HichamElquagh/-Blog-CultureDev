@@ -1,6 +1,6 @@
 <?php 
 
-include_once ('../scripts.php/signup.script.php');
+include_once ('../scripts.php/admin.script.php');
 $adminn = new Getadmin();
 $adminn->signupUser();
 // if(isset($_POST['signup'])){
@@ -20,7 +20,15 @@ $adminn->signupUser();
     <title></title>
 </head>
 <body> 
+   
 
+
+<?php    if (isset($_SESSION['error'])) {
+         echo '<div class="alert alert-danger mt-5  mx-auto w-50 ">' . $_SESSION['error'] . ' </div>';
+         unset($_SESSION['error']);
+    }
+    ?>
+    
 <div class=" d-flex justify-content-end ">
         <div class=" form-box row mx-4  p- " id="form-bx">
             <div class=" col-md-5 col">
@@ -28,7 +36,7 @@ $adminn->signupUser();
                     <h2 class="  fw-bold text-light mb-3">Sign up</h2>
                     <div class=" mb-3">
                         <input type="text" class="form-control" id="flo" aria-describedby="emailHelp" name="name"
-                            placeholder="user name" required />
+                         placeholder="user name" required />
                     </div>
                      
                     <div class=" mb-3">

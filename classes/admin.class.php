@@ -1,8 +1,8 @@
 
 <?php
 
-include_once('database.class.php');  // Path to the DataBase
 session_start();
+include_once('database.class.php');  // Path to the DataBase
 
 class Admin extends Database{
 
@@ -68,16 +68,17 @@ class Admin extends Database{
             header("location: ../pages/login.php?error=wronglogin");
             exit();
         } elseif ($checkPwd == true) {
-            $_SESSION["name"] = $result["username"];
+            $_SESSION["id"]= $result["id"];
+            $_SESSION["name"] = $result["user_name"];
             $_SESSION["email"] = $email;
         }
+
         $stmt = null;
     }
  
-
+    
 
 }
-
 
 
 

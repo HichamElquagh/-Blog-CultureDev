@@ -2,6 +2,7 @@
 
 
    include_once ('../classes/admin.class.php');
+//    session_start();
 //    include_once('../pages/signUp.php');
 //    include_once('../pages/login.php');
    
@@ -42,7 +43,7 @@
                header("location: ../pages/signUp.php?error=Erroremail");
                exit();
            }
-           elseif(!$this->passwordMatch($password, $RepeatPassword)){
+           elseif(!$this->passwordAdmin($password, $RepeatPassword)){
                $_SESSION['error'] = 'Passwords doesnt match';
                header("location: ../pages/signUp.php?error=Matchpassword");
                exit();
