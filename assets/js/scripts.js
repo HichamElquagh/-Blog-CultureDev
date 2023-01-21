@@ -1,13 +1,29 @@
 
-const article = document.querySelector('.dd');
-const category = document.querySelector('.ss');
+const article = document.querySelector('.article');
+const category = document.querySelector('.category');
 
-function showcategory(){
-    article.style.display = "none";
-    category.style.display = "block";
-}
-function showarticle() {
-    article.style.display = "block";
-    category.style.display = "none";
+
+
+
+
+function getCategoryvalue(id){
+    document.querySelector('.modal-title').innerText="Update";
+    document.getElementById('inputhiddenid').value=id;
+    let input = document.querySelector(`#Categoryvalue${id}`).innerText
+   document.getElementById('valuecategory').value=input;
 
 }
+
+
+function activecategory(){
+    category.classList.add("active");
+    article.classList.remove("active");
+}
+function arctivearticle() {
+    
+    article.classList.add("active");
+    category.classList.remove("active");
+}
+
+
+

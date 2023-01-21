@@ -1,9 +1,3 @@
- <?php
- 
- include '../classes/admin.class.php';
- 
- ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,24 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title><?php echo $title ?></title>
 </head>
-  
+
+
 <body>
-<nav class=" d-flex justify-content-between nav-bar">  
-  <div class=" d-flex align-items-center h-100 brand">CultureDev</div>
-  <div class="d-flex align-items-center justify-content-between fs-3 me-5">
-    <i class="fa-solid fa-user mx-3 text-light"></i>
-    <?php echo '<div class="  text-light" >' . $_SESSION["name"] . ' </div>';?>
-
-  </div>
-
-</nav>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script src="../assets/js/scripts.js"></script>
-</html>
-      
-
-
-
-
-

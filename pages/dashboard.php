@@ -1,6 +1,5 @@
 <?php
 include '../include/head.php';
-include '../classes/admin.class.php';
 include '../scripts.php/crud.scripts.php';
 //  $title = 'dashboard';
 
@@ -8,21 +7,11 @@ include '../scripts.php/crud.scripts.php';
 ?>
 
 
-
-<nav class=" d-flex justify-content-between nav-bar">  
-  <div class=" d-flex align-items-center h-100 brand">CultureDev</div>
-  <div class="d-flex align-items-center justify-content-between fs-3 me-5">
-    <i class="fa-solid fa-user mx-3 text-light"></i>
-    <?php echo '<div class="  text-light" >' . $_SESSION["name"] . ' </div>';?>
-
-  </div>
-
-</nav>
     
 <div class="cont"> 
   <div class="sidebar">
-    <a  onclick="showarticle();" class="active" href="#home">Home</a>
-    <a onclick="showcategory();" href="#news">category</a>
+    <a   class="article" href="#home">Article</a>
+    <a  class ="category" onclick="activecategory();"   href="category.php">Category</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
   </div>
@@ -42,16 +31,14 @@ include '../scripts.php/crud.scripts.php';
          </div>
 
 
-       <div class="tab">
+       <div class="tab table-responsive articleTable">
        <div class="  mt-4">
                 <button class="btn mb-3 float-end btn-dark px-4 rounded-pill btn-cart" id="btntask" data-bs-toggle="modal"
-                data-bs-target="#modal"><i class="fa fa-plus"></i> Add Product </a>
+                data-bs-target="#modal"><i class="fa fa-plus"></i> Add Article </a>
             </div>
-              <table class="table dd">
+              <table class="table ">
           <thead>
-          
-                                       
-                                   
+            
             <tr class="table-dark">
               <th scope="col">#</th>
               <th scope="col">Category</th>
@@ -68,7 +55,6 @@ include '../scripts.php/crud.scripts.php';
             <tr>
             <?php foreach($displayarticl as $display):?>
               <th scope="row">1</th>
-              <input class="text-danger" type="text" value="<?php $display['id_article']?>">
               <td><?php echo  $display['Carticle']?></td>
               <td><?php echo  $display['image']?></td>
               <td><?php echo $display['title']?></td>
@@ -80,8 +66,16 @@ include '../scripts.php/crud.scripts.php';
             <?php endforeach;?>
           </tbody>
         </table>
-
-        <table class="table ss ">
+      </div>
+      <div class="categoryTable">
+      <!-- <div class="form-group w-25 my-3 d-flex "> -->
+        <div class="d-flex justify-content-end my-3">
+        <input class="w-25" type="text" class="form-control" id="recipient-name" name="insertcategory">
+        <button class="btn mb-3 float-end btn-dark px-4 rounded-pill btn-cart" id="btntask" data-bs-toggle="modall"
+                data-bs-target="#modall"><i class="fa fa-plus"></i>Add Category</a>
+        </div>
+        
+      <table class="table">
           <thead>
           
                                        
@@ -99,7 +93,6 @@ include '../scripts.php/crud.scripts.php';
             <tr>
             <?php foreach($displayarticl as $display):?>
               <th scope="row">1</th>
-              <input class="text-danger" type="text" value="<?php $display['id_article']?>">
               <td><?php echo  $display['Carticle']?></td>
               <td><a href="update.article.php?id=<?php echo  $display['id_article']  ?>"><i class=" text-success  fa fa-edit"></i></a> </td>
               <td><i class=" text-danger fa fa-trash"></i></td>
@@ -112,18 +105,21 @@ include '../scripts.php/crud.scripts.php';
 </div>
  
  <!-- TASK MODAL -->
- <div class="modal fade" id="modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal"
-                        id="modalboton">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
 
-                <form action="../scripts.php/crud.scripts.php" method="POST" id="form" ">
+
+ 
+ <div class="modal fade" id="modal">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal"
+                id="modalboton">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+       
+      <form action="../scripts.php/crud.scripts.php" method="POST" id="form" ">
                     <div class="modal-body">
                         <h6 class="modal-title my-2" id="exampleModalLabel">Category</h6>
                         <select class="form-select" id="selectstatus" name="category"
@@ -163,12 +159,12 @@ include '../scripts.php/crud.scripts.php';
                 </form>
             </div>
         </div>
-    </div>
+    </div>           
 
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script src="../assets/js/scripts.js"></script>
-</html>
+          
+
+
+
 
 
 

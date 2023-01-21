@@ -5,8 +5,10 @@ body {
    
   }
 
+.categoryTable{
+  display: none;
+}
 
-  
   .nav-bar{
         
       height: 4rem;
@@ -35,6 +37,7 @@ body {
   
   .statt{
     justify-content: space-around;
+    margin-top: 2rem !important;
 
   }
   .card-statistique{

@@ -1,8 +1,13 @@
 <?php 
 include_once ('../classes/crud.class.php');
+include_once ('../classes/crud.category.php');
 // include_once ('../pages/dashboard.php');
 
-if(isset($_POST['save'])) {
+if(isset($_POST['save']))  insertArtic(); 
+
+
+
+    function insertArtic(){ 
         $id_user= $_POST['id_user'];
         $category = $_POST['category'];
         $title = $_POST['title'];
@@ -16,6 +21,20 @@ if(isset($_POST['save'])) {
             header('location:../pages/dashboard.php');
         // }
     }
+
+    if(isset($_POST['save-bn'])) insertCatego();
+                                  
+        function insertCatego(){
+         $namecategoey= $_POST['Name'];
+
+         $insertC = new Category($namecategoey);
+         $insertC->insertcategory();
+         header('location:../pages/category.php');
+
+
+
+    }
+    
     // for category modal 
     $category= new Article ();
     $dbcategory=$category->selectcategory();
