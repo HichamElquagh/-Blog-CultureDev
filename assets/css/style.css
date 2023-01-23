@@ -1,11 +1,20 @@
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
+  background-color: rgb(251, 246, 241) !important;
 }
 
-/* .categoryTable {
+#Image {
   display: none;
-} */
+}
+
+#updateBtn {
+  display: none;
+}
+
+#article-update-btn {
+  display: none;
+}
 
 .nav-bar {
   height: 4rem;
@@ -67,7 +76,7 @@ body {
   color: white;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 832px) {
   .sidebar {
     width: 100%;
     height: auto;

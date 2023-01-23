@@ -28,16 +28,13 @@ include '../scripts.php/crud.scripts.php';
            <div class="card-statistique  col-md-2 col-5">
            </div>
          </div>
-
-
-       <div class="tab table-responsive articleTable">
-      <!-- <div class="form-group w-25 my-3 d-flex ">
-         <div class="d-flex justify-content-end my-3">
-        <input class="w-25" type="text" class="form-control" id="recipient-name" name="insertcategory"> -->
-        <button class="btn mb-3 float-end btn-dark px-4 rounded-pill btn-cart" id="btntask" data-bs-toggle="modal"
+         <div class="d-flex justify-content-end"> 
+         <button class="btn col-2  mb-3 float-end btn-dark px-4 rounded-pill btn-cart" id="btntask" data-bs-toggle="modal"
                 data-bs-target="#modal"><i class="fa fa-plus"></i>Add Category</a></button>
-        
-      <table class="table">
+                </div>
+       <div class="tab table-responsive articleTable">
+      
+      <table class="table" id="table">
           <thead>                                                        
             <tr class="table-dark">
               <th scope="col">#</th>
@@ -54,9 +51,12 @@ include '../scripts.php/crud.scripts.php';
             <?php foreach($dbcategory as $categotymodal):?>
               <th scope="row">1</th>
               <td id="Categoryvalue<?php echo $categotymodal['id'];?>"> <?php echo $categotymodal["category_article"] ?></td>
-              <td > <button onClick="getCategoryvalue(<?php echo $categotymodal['id'];?>);" data-bs-toggle="modal"
+              <td > <button class="bg-light border-0"  onClick="getCategoryvalue(<?php echo $categotymodal['id'];?>);" data-bs-toggle="modal"
               data-bs-target="#modal" > <i class=" text-success  fa fa-edit"></i></button> </td>
-              <td><i class=" text-danger fa fa-trash"></i></td>
+               
+            <form action="../scripts.php/crud.scripts.php" method="POST" id="form" >
+              <td> <button type="submit" value="<?php echo $categotymodal['id'];?>" class="bg-light border-0" name="delete-btn" ><i class=" text-danger fa fa-trash"></i></button></td>
+            </form>
             </tr>
             <?php endforeach;?>
           </tbody>
@@ -91,6 +91,8 @@ include '../scripts.php/crud.scripts.php';
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" name="save-bn" class="btn btn-primary" data-bs-dismiss="modal"
                             id="saveBtn">Save</button>
+                        <button type="submit" name="update-bn" class="btn btn-primary" data-bs-dismiss="modal"
+                            id="updateBtn">update</button>
                     </div>
                 </form>
             </div>
